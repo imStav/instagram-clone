@@ -18,7 +18,9 @@ const title = props.isLogin ? "Login" : "Sign up";
 
 <template>
   <div>
-    <a-button type="primary" @click="showModal" class="button">{{ title }}</a-button>
+    <a-button type="primary" @click="showModal" class="button">{{
+      title
+    }}</a-button>
     <a-modal v-model:visible="visible" title="Basic Modal" @ok="handleOk">
       <a-input v-if="!isLogin" v-model:value="value" placeholder="Username" />
       <a-input v-model:value="value" placeholder="Email" />
@@ -27,10 +29,9 @@ const title = props.isLogin ? "Login" : "Sign up";
   </div>
 </template>
 
-
 <style scoped>
 input {
-  margin-top: .5rem;
+  margin-top: 0.5rem;
 }
 
 .button {

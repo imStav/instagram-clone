@@ -31,7 +31,7 @@ const isAuthenticated = ref(false);
         </div>
 
         <div v-else>
-            <a-button type="primary" class="button">Profile</a-button>
+          <a-button type="primary" class="button">Profile</a-button>
         </div>
       </div>
     </Container>
