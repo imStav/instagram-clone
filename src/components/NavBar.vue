@@ -5,6 +5,7 @@ import Container from "./Container.vue";
 import AuthModal from "./AuthModal.vue";
 
 const searchUser = ref("");
+const isAuthenticated = ref(false);
 </script>
 
 <template>
@@ -24,9 +25,13 @@ const searchUser = ref("");
           />
         </div>
 
-        <div class="nav_buttons">
+        <div v-if="!isAuthenticated" class="nav_buttons">
           <AuthModal :isLogin="false" />
           <AuthModal :isLogin="true" />
+        </div>
+
+        <div v-else>
+            <a-button type="primary" class="button">Profile</a-button>
         </div>
       </div>
     </Container>
