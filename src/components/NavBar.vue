@@ -20,7 +20,7 @@ const onSearch = () => {
 <template>
   <a-layout-header class="layout_header">
     <AppContainer>
-      <div class="nav_container">
+      <nav class="nav_container">
         <div>
           <RouterLink to="/">Instagram</RouterLink>
           <a-input-search
@@ -39,7 +39,7 @@ const onSearch = () => {
         <div v-else>
           <a-button type="primary" class="button">Profile</a-button>
         </div>
-      </div>
+      </nav>
     </AppContainer>
   </a-layout-header>
 </template>
