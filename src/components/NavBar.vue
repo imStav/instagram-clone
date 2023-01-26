@@ -23,13 +23,10 @@ const onSearch = () => {
       <div class="nav_container">
         <div>
           <RouterLink to="/">Instagram</RouterLink>
-        </div>
-
-        <div>
           <a-input-search
             v-model:value="searchUser"
             placeholder="input search text"
-            style="width: 100%"
+            style="width: 100%; display:flex; align-items: center; margin-left: 1rem;"
             @search="onSearch"
           />
         </div>
@@ -52,7 +49,7 @@ const onSearch = () => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: 50%;
 }
 
 .nav_container div {
