@@ -1,24 +1,31 @@
 <script setup>
+import { defineProps } from 'vue';
+
+const props = defineProps(['post']);
 </script>
 
 <template>
-  <a-card hoverable style="width: 240px">
+  <a-card hoverable style="width: 240px" class="post_card">
     <template #cover>
       <img
         alt="example"
-        src=""
+        :src="post.url"
       />
     </template>
-    <a-card-meta title="Europe Street beat">
-      <template #description>www.instagram.com</template>
+    <a-card-meta :title="post.username">
+      <template #description>
+        <p>{{ post.comment }}</p>
+      </template>
     </a-card-meta>
   </a-card>
 </template>
 
 <style scoped>
 img {
-  background-color: #4d7dff;
-  color: whitesmoke;
-  height: 150px;
+  aspect-ratio: 1 / 1;
+}
+
+.post_card {
+  margin-block: 1rem;
 }
 </style>
