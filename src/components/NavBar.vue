@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import { RouterLink } from "vue-router";
-import Container from "./Container.vue";
+import AppContainer from "./AppContainer.vue";
 import AuthModal from "./AuthModal.vue";
 
 const searchUser = ref("");
@@ -10,7 +10,7 @@ const isAuthenticated = ref(false);
 
 <template>
   <a-layout-header class="layout_header">
-    <Container>
+    <AppContainer>
       <div class="nav_container">
         <div>
           <RouterLink to="/">Instagram</RouterLink>
@@ -34,7 +34,7 @@ const isAuthenticated = ref(false);
           <a-button type="primary" class="button">Profile</a-button>
         </div>
       </div>
-    </Container>
+    </AppContainer>
   </a-layout-header>
 </template>
 
