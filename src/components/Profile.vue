@@ -5,13 +5,13 @@ import AppContainer from "./AppContainer.vue";
 <template>
   <AppContainer>
     <div>
-        <h1>Test</h1>
+      <h1>Test</h1>
     </div>
   </AppContainer>
 </template>
 
 <style scoped>
 h1 {
-    color: whitesmoke;
+  color: whitesmoke;
 }
 </style>
