@@ -1,11 +1,12 @@
 <script setup>
 import AppContainer from "./AppContainer.vue";
+import UserBar from "./UserBar.vue";
 </script>
 
 <template>
   <AppContainer>
     <div>
-      <h1>Test</h1>
+      <UserBar />
     </div>
   </AppContainer>
 </template>
