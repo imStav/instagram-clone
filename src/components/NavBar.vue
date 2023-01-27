@@ -25,7 +25,12 @@ const onSearch = () => {
           <a-input-search
             v-model:value="searchUser"
             placeholder="input search text"
-            style="width: 100%; display:flex; align-items: center; margin-left: 1rem;"
+            style="
+              width: 100%;
+              display: flex;
+              align-items: center;
+              margin-left: 1rem;
+            "
             @search="onSearch"
           />
         </div>
