@@ -6,7 +6,14 @@ import UserBar from "./UserBar.vue";
 <template>
   <AppContainer>
     <div>
-      <UserBar />
+      <UserBar
+        username="stav"
+        :userInfos="{
+          posts: 4,
+          followers: 20,
+          following: 20,
+        }"
+      />
     </div>
   </AppContainer>
 </template>
