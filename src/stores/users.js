@@ -34,6 +34,16 @@ export const useUserStore = defineStore("users", () => {
       return (errorMessage.value = "Email is invalid");
     }
 
+    const { data: userWithUsername } = await supabase
+      .from("users")
+      .select()
+      .eq('username', username)
+      .single()
+
+    if (userWithUsername) {
+      return errorMessage.value = "User already exist (or name already taken)";
+    }
+
     errorMessage.value = "";
 
     const { error } = await supabase.auth.signUp({
