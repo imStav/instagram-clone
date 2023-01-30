@@ -4,7 +4,7 @@ import { storeToRefs } from "pinia";
 import { useUserStore } from "../stores/users";
 
 const userStore = useUserStore();
-const { errorMessage, loading } = storeToRefs(userStore);
+const { errorMessage, loading, user } = storeToRefs(userStore);
 
 const userCredentials = reactive({
   email: "",
@@ -20,16 +20,24 @@ const showModal = () => {
   visible.value = true;
 };
 
-const handleOk = () => {
-  // console.log(userCredentials);
-  userStore.handleSignup(userCredentials);
+const clearUserCredentialsInput = () => {
+  userCredentials.email = "";
+  userCredentials.username = "";
+  userCredentials.password = "";
+}
+
+const handleOk = async () => {
+  await userStore.handleSignup(userCredentials);
+
+  if (user.value) {
+    visible.value = false;
+    clearUserCredentialsInput();
+  }
 };
 
 const handleCancel = () => {
   userStore.clearErrorMessage();
-  userCredentials.email = "";
-  userCredentials.username = "";
-  userCredentials.password = "";
+  clearUserCredentialsInput();
   visible.value = false;
 }
 
