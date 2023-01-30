@@ -1,16 +1,27 @@
 <script setup>
-import { ref, defineProps } from "vue";
+import { ref, reactive } from "vue";
+import { useUserStore } from "../stores/users";
+
+const userStore = useUserStore();
+const { errorMessage, handleSignup } = userStore;
+
+const userCredentials = reactive({
+  email: "",
+  username: "",
+  password: "",
+});
 
 const props = defineProps(["isLogin"]);
 
 const visible = ref(false);
+
 const showModal = () => {
   visible.value = true;
 };
 
-const handleOk = (e) => {
-  console.log(e);
-  visible.value = false;
+const handleOk = () => {
+  console.log(userCredentials);
+  handleSignup(userCredentials);
 };
 
 const title = props.isLogin ? "Login" : "Sign up";
@@ -21,10 +32,18 @@ const title = props.isLogin ? "Login" : "Sign up";
     <a-button type="primary" @click="showModal" class="button">{{
       title
     }}</a-button>
-    <a-modal v-model:visible="visible" title="Basic Modal" @ok="handleOk">
-      <a-input v-if="!isLogin" v-model:value="value" placeholder="Username" />
-      <a-input v-model:value="value" placeholder="Email" />
-      <a-input v-model:value="value" placeholder="Password" />
+    <a-modal v-model:visible="visible" :title="title" @ok="handleOk">
+      <a-input
+        v-if="!isLogin"
+        v-model:value="userCredentials.username"
+        placeholder="Username"
+      />
+      <a-input v-model:value="userCredentials.email" placeholder="Email" />
+      <a-input
+        v-model:value="userCredentials.password"
+        placeholder="Password"
+        type="password"
+      />
     </a-modal>
   </div>
 </template>
