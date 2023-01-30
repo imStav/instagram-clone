@@ -35,6 +35,8 @@ export const useUserStore = defineStore("users", () => {
       console.log("invalid email");
       return (errorMessage.value = "Email is invalid");
     }
+
+    errorMessage.value = "";
   };
 
   const handleLogout = () => {};

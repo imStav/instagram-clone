@@ -1,9 +1,10 @@
 <script setup>
 import { ref, reactive } from "vue";
+import { storeToRefs } from "pinia";
 import { useUserStore } from "../stores/users";
 
 const userStore = useUserStore();
-const { errorMessage, handleSignup } = userStore;
+const { errorMessage } = storeToRefs(userStore);
 
 const userCredentials = reactive({
   email: "",
@@ -21,7 +22,7 @@ const showModal = () => {
 
 const handleOk = () => {
   console.log(userCredentials);
-  handleSignup(userCredentials);
+  userStore.handleSignup(userCredentials);
 };
 
 const title = props.isLogin ? "Login" : "Sign up";
@@ -44,6 +45,10 @@ const title = props.isLogin ? "Login" : "Sign up";
         placeholder="Password"
         type="password"
       />
+
+      <a-typography-text v-if="errorMessage" type="danger">
+        {{ errorMessage }}
+      </a-typography-text>
     </a-modal>
   </div>
 </template>
