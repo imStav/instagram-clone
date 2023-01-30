@@ -22,17 +22,14 @@ export const useUserStore = defineStore("users", () => {
     const minPasswordLenght = 6;
 
     if (username.length < minUsernameLenght) {
-      console.log("username too short");
       return (errorMessage.value = `Username length must be at least ${minUsernameLenght} characters`);
     }
 
     if (password.length < minPasswordLenght) {
-      console.log("password too short");
       return (errorMessage.value = `Password length must be at least ${minPasswordLenght} characters`);
     }
 
     if (!validateEmail(email)) {
-      console.log("invalid email");
       return (errorMessage.value = "Email is invalid");
     }
 
