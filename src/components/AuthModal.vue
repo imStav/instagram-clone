@@ -25,6 +25,14 @@ const handleOk = () => {
   userStore.handleSignup(userCredentials);
 };
 
+const handleCancel = () => {
+  userStore.clearErrorMessage();
+  userCredentials.email = "";
+  userCredentials.username = "";
+  userCredentials.password = "";
+  visible.value = false;
+}
+
 const title = props.isLogin ? "Login" : "Sign up";
 </script>
 
@@ -34,6 +42,11 @@ const title = props.isLogin ? "Login" : "Sign up";
       title
     }}</a-button>
     <a-modal v-model:visible="visible" :title="title" @ok="handleOk">
+      <template #footer>
+        <a-button key="back" @click="handleCancel">Cancel</a-button>
+        <a-button key="submit" type="primary" @click="handleOk">Submit</a-button>
+      </template>
+
       <a-input
         v-if="!isLogin"
         v-model:value="userCredentials.username"
