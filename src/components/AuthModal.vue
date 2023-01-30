@@ -27,7 +27,15 @@ const clearUserCredentialsInput = () => {
 }
 
 const handleOk = async () => {
-  await userStore.handleSignup(userCredentials);
+  if (props.isLogin) {
+    await userStore.handleLogin({
+      password: userCredentials.password,
+      email: userCredentials.email
+    });
+  }
+  else {
+    await userStore.handleSignup(userCredentials);
+  }
 
   if (user.value) {
     visible.value = false;
