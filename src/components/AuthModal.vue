@@ -4,7 +4,7 @@ import { storeToRefs } from "pinia";
 import { useUserStore } from "../stores/users";
 
 const userStore = useUserStore();
-const { errorMessage } = storeToRefs(userStore);
+const { errorMessage, loading } = storeToRefs(userStore);
 
 const userCredentials = reactive({
   email: "",
@@ -44,20 +44,35 @@ const title = props.isLogin ? "Login" : "Sign up";
     <a-modal v-model:visible="visible" :title="title" @ok="handleOk">
       <template #footer>
         <a-button key="back" @click="handleCancel">Cancel</a-button>
-        <a-button key="submit" type="primary" @click="handleOk">Submit</a-button>
+        <a-button 
+          key="submit" 
+          type="primary" 
+          :disabled="loading" 
+          @click="handleOk">
+            Submit
+        </a-button>
       </template>
 
-      <a-input
-        v-if="!isLogin"
-        v-model:value="userCredentials.username"
-        placeholder="Username"
-      />
-      <a-input v-model:value="userCredentials.email" placeholder="Email" />
-      <a-input
-        v-model:value="userCredentials.password"
-        placeholder="Password"
-        type="password"
-      />
+      <div v-if="!loading" class="input_container">
+        <a-input
+          v-if="!isLogin"
+          v-model:value="userCredentials.username"
+          placeholder="Username"
+        />
+        <a-input 
+          v-model:value="userCredentials.email" 
+          placeholder="Email" 
+        />
+        <a-input
+          v-model:value="userCredentials.password"
+          placeholder="Password"
+          type="password"
+        />
+      </div>
+
+      <div v-else class="spinner">
+        <a-spin />
+      </div>
 
       <a-typography-text v-if="errorMessage" type="danger">
         {{ errorMessage }}
@@ -73,5 +88,16 @@ input {
 
 .button {
   margin-left: 10px;
+}
+
+.input_container {
+  height: 120px;
+}
+
+.spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 120px;
 }
 </style>
